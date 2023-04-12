@@ -29,6 +29,15 @@ def get_agreement(all_gpt_annotations):
             num_same += 1
     return num_same/n
 
+def get_distribution(all_gpt_annotations):
+    for gpt_annotations in all_gpt_annotations:
+        freq = {}
+        for a in gpt_annotations:
+            if a not in freq:
+                freq[a] = 0
+            freq[a] += 1
+        print(freq)
+
 # am to ae
 print('agreement am-ae:', get_agreement([am_gpt, ae_gpt]))
 
@@ -40,3 +49,6 @@ print('agreement am-nv:', get_agreement([am_gpt, nv_gpt]))
 
 # am to ae to nv
 print('agreement am-ae-nv:', get_agreement([am_gpt, ae_gpt, nv_gpt]))
+
+# label distributions
+get_distribution([am_gpt, ae_gpt, nv_gpt])
